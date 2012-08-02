@@ -1,9 +1,11 @@
-var arduino = require('duino'),
-    board = new arduino.Board();
+var five = require("johnny-five"),
+    // or "./lib/johnny-five" when running from the source
+    board = new five.Board();
 
-var led = new arduino.Led({
-  board: board,
-  pin: 13
+board.on("ready", function() {
+
+  // Create an Led on pin 13 and strobe it on/off
+  // Optionall set the speed; defaults to 100ms
+  (new five.Led(13)).strobe();
+
 });
-
-led.blink();
